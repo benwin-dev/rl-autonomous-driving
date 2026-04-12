@@ -125,6 +125,36 @@ The performance of the RL agent will be evaluated using:
 - **Episode Reward**  
   Total cumulative reward over an episode
 
-The RL-based policy will also be compared with a **simple rule-based driving strategy** to measure improvements.
+The RL-based policy will also be compared with a **simple baseline strategy** to measure improvements.
+
+---
+
+## Running Evaluation
+After training, run the evaluator to compute proposal-aligned metrics and compare PPO to a simple baseline:
+
+```bash
+python evaluate_ppo.py --episodes 100 --model-path ppo_intersection_model
+```
+
+Save report-ready files:
+
+```bash
+python evaluate_ppo.py --episodes 100 \
+  --output-json results/eval_report.json \
+  --output-csv results/eval_report.csv
+```
+
+Metrics reported:
+- Success rate
+- Collision rate
+- Timeout rate
+- Average episode reward
+- Average waiting time (steps and seconds)
+
+You can disable the random baseline comparison with:
+
+```bash
+python evaluate_ppo.py --episodes 100 --no-random-baseline
+```
 
 ---
