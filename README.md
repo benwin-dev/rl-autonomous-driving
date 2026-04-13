@@ -125,6 +125,62 @@ The performance of the RL agent will be evaluated using:
 - **Episode Reward**  
   Total cumulative reward over an episode
 
-The RL-based policy will also be compared with a **simple rule-based driving strategy** to measure improvements.
+The RL-based policy will also be compared with a **simple baseline strategy** to measure improvements.
+
+---
+
+## Running Evaluation
+After training, run the evaluator to compute proposal-aligned metrics and compare PPO to a simple baseline:
+
+```bash
+python evaluate_ppo.py --episodes 100 --model-path ppo_intersection_model
+```
+
+Save report-ready files:
+
+```bash
+python evaluate_ppo.py --episodes 100 \
+  --output-json results/eval_report.json \
+  --output-csv results/eval_report.csv
+```
+
+Metrics reported:
+- Success rate
+- Collision rate
+- Timeout rate
+- Average episode reward
+- Average waiting time (steps and seconds)
+
+You can disable the random baseline comparison with:
+
+```bash
+python evaluate_ppo.py --episodes 100 --no-random-baseline
+```
+
+---
+
+## Reward Variant Experiments
+Train reward-focused variants (safety ablation):
+
+```bash
+./train_reward_variants.sh 100000
+```
+
+This script trains:
+- `collision_strong` (`collision_reward` increased in magnitude)
+- `near_miss_penalty` (extra penalty when ego gets too close to other vehicles)
+- `waiting_penalty` (small penalty when ego stays near zero speed)
+
+You can also train a single variant:
+
+```bash
+python train_ppo.py --reward-variant near_miss_penalty --timesteps 100000
+```
+
+Then evaluate each model with:
+
+```bash
+python evaluate_ppo.py --episodes 100 --model-path ppo_intersection_model_near_miss_penalty
+```
 
 ---
