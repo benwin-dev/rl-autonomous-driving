@@ -158,3 +158,29 @@ python evaluate_ppo.py --episodes 100 --no-random-baseline
 ```
 
 ---
+
+## Reward Variant Experiments
+Train reward-focused variants (safety ablation):
+
+```bash
+./train_reward_variants.sh 100000
+```
+
+This script trains:
+- `collision_strong` (`collision_reward` increased in magnitude)
+- `near_miss_penalty` (extra penalty when ego gets too close to other vehicles)
+- `waiting_penalty` (small penalty when ego stays near zero speed)
+
+You can also train a single variant:
+
+```bash
+python train_ppo.py --reward-variant near_miss_penalty --timesteps 100000
+```
+
+Then evaluate each model with:
+
+```bash
+python evaluate_ppo.py --episodes 100 --model-path ppo_intersection_model_near_miss_penalty
+```
+
+---
