@@ -1,0 +1,3 @@
+policy,episodes,success_rate_percent,collision_rate_percent,timeout_rate_percent,avg_reward,avg_steps,avg_waiting_steps,avg_waiting_seconds
+ppo,500,46.4,53.6,0.0,4.075209929693917,7.14,0.0,0.0
+random_baseline,500,17.0,46.8,36.2,1.1549567596029653,9.738,1.552,1.552

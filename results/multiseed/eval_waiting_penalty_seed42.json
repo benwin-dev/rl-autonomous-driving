@@ -1,0 +1,39 @@
+{
+  "created_at_utc": "2026-04-13T23:56:28.156919+00:00",
+  "environment": "intersection-v0",
+  "model_path": "ppo_intersection_model_waiting_penalty",
+  "episodes_per_policy": 500,
+  "seed": 42,
+  "wait_speed_threshold": 0.5,
+  "max_steps": null,
+  "ppo_deterministic": true,
+  "metrics": {
+    "ppo": {
+      "episodes": 500,
+      "success_rate_percent": 46.4,
+      "collision_rate_percent": 53.6,
+      "timeout_rate_percent": 0.0,
+      "avg_reward": 4.075209929693917,
+      "avg_steps": 7.14,
+      "avg_waiting_steps": 0.0,
+      "avg_waiting_seconds": 0.0
+    },
+    "random_baseline": {
+      "episodes": 500,
+      "success_rate_percent": 17.0,
+      "collision_rate_percent": 46.8,
+      "timeout_rate_percent": 36.2,
+      "avg_reward": 1.1549567596029653,
+      "avg_steps": 9.738,
+      "avg_waiting_steps": 1.552,
+      "avg_waiting_seconds": 1.552
+    }
+  },
+  "deltas_ppo_minus_random": {
+    "success_rate_delta_pp": 29.4,
+    "collision_rate_delta_pp": 6.800000000000004,
+    "timeout_rate_delta_pp": -36.2,
+    "avg_reward_delta": 2.9202531700909513,
+    "avg_waiting_seconds_delta": -1.552
+  }
+}
